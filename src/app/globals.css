@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-text-primary font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-gold/30 text-white;
+  }
+}
+
+@layer components {
+  .container-main {
+    @apply w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 
+           bg-gold text-background font-semibold rounded-lg 
+           transition-all duration-200 hover:bg-goldLight 
+           focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 
+           focus:ring-offset-background;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 
+           border border-border text-gold font-semibold rounded-lg 
+           transition-all duration-200 hover:border-gold hover:text-goldLight 
+           focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 
+           focus:ring-offset-background;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-22 lg:py-26;
+  }
+
+  .heading-display {
+    @apply font-display text-display-sm md:text-display-md lg:text-display-lg font-bold;
+  }
+
+  .heading-section {
+    @apply font-display text-heading-lg md:text-heading-md font-bold text-text-primary;
+  }
+}

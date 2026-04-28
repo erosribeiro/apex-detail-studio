@@ -43,6 +43,9 @@ Thumbs.db
 /images/*.png
 !/images/apex-logo-removebg-preview.png
 
+# Public images (must be tracked)
+!/public/images/*
+
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts

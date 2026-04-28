@@ -118,7 +118,7 @@ export default function Home() {
 
             <FadeIn direction="up" delay={100}>
               <p className="text-lg md:text-xl text-text-secondary mb-8 md:mb-12">
-                Estética automotiva premium em Belo Horizonte.
+                Estética automotiva premium em Pinhas, PR.
                 Transformamos seu carro em uma obra de arte sobre rodas.
               </p>
             </FadeIn>

@@ -2,16 +2,19 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 const navLinks = [
   { href: "#inicio", label: "Início" },
   { href: "#resultados", label: "Resultados" },
   { href: "#servicos", label: "Serviços" },
-  { href: "#agendamento", label: "Agendar" },
+  { href: "#depoimentos", label: "Depoimentos" },
 ];
 
-export function Header() {
+interface HeaderProps {
+  onOpenBooking?: () => void;
+}
+
+export function Header({ onOpenBooking }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -30,6 +33,12 @@ export function Header() {
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
     }
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleBookingClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    onOpenBooking?.();
     setIsMobileMenuOpen(false);
   };
 
@@ -69,39 +78,23 @@ export function Header() {
             ))}
           </nav>
 
-          <a
-            href="#agendamento"
-            onClick={(e) => handleNavClick(e, "#agendamento")}
+          <button
+            onClick={onOpenBooking}
             className="hidden md:inline-flex btn-primary text-sm py-2"
           >
             Agendar
-          </a>
+          </button>
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 text-text-primary"
             aria-label="Menu"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               {isMobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
@@ -120,13 +113,15 @@ export function Header() {
                   {link.label}
                 </a>
               ))}
-              <a
-                href="#agendamento"
-                onClick={(e) => handleNavClick(e, "#agendamento")}
+              <button
+                onClick={() => {
+                  onOpenBooking?.();
+                  setIsMobileMenuOpen(false);
+                }}
                 className="btn-primary text-center"
               >
                 Agendar
-              </a>
+              </button>
             </nav>
           </div>
         )}
